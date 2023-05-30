@@ -1,0 +1,39 @@
+version: "2"
+
+services:
+  mariadb:
+    build: ./requirements/mariadb
+    env_file:
+      - .env
+    volumes:
+      - /Users/kfergani/data/mysql:/var/lib/mysql
+    networks:
+      - docker_network
+    restart: always
+  nginx:
+    build: ./requirements/nginx
+    env_file:
+      - .env
+    ports:
+      - 443:443
+    depends_on: 
+      - wordpress
+    volumes:
+      - /Users/kfergani/Documents/42_Inception/wordpress_shit:/var/www/html/wordpress
+    networks:
+      - docker_network
+    restart: always
+  wordpress:
+    build: ./requirements/wordpress
+    env_file:
+      - .env
+    depends_on: 
+      - mariadb
+    volumes:
+      - /Users/kfergani/Documents/42_Inception/wordpress_shit:/var/www/html/wordpress
+    networks:
+      - docker_network
+    restart: always
+
+networks:
+  docker_network:

@@ -6,36 +6,36 @@
 #    By: kfergani <kfergani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 05:51:35 by kfergani          #+#    #+#              #
-#    Updated: 2023/05/30 15:20:46 by kfergani         ###   ########.fr        #
+#    Updated: 2023/05/31 15:20:34 by kfergani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 COMPOSE_FILE = ./srcs/docker-compose.yml
 
-DB_VOLUME = /Users/kfergani/data/mysql
-WP_VOLUME = /Users/kfergani/data/wordpress
+DB_VOLUME = /home/kfergani/data/mysql
+WP_VOLUME = /home/kfergani/data/wordpress
 
 all: run
 
 run:
-	@ mkdir -p $(DB_VOLUME)
-	@ mkdir -p $(WP_VOLUME)
-	@docker-compose -f $(COMPOSE_FILE) up --build 
+	@sudo mkdir -p $(DB_VOLUME)
+	@sudo mkdir -p $(WP_VOLUME)
+	@sudo docker-compose -f $(COMPOSE_FILE) up --build 
 
 rm-volume:
-	@ rm -rf $(DB_VOLUME)
-	@ rm -rf $(WP_VOLUME)
+	@sudo rm -rf $(DB_VOLUME)
+	@sudo rm -rf $(WP_VOLUME)
 
 prune:
-	@docker system prune -a
+	@sudo docker system prune -a
 
 fclean:
-	@docker-compose -f $(COMPOSE_FILE) down
-	@ rm -rf $(DB_VOLUME)
-	@ rm -rf $(WP_VOLUME)
-	@docker image rm -f srcs_nginx
-	@docker image rm -f srcs_wordpress
-	@docker image rm -f srcs_mariadb
+	@sudo docker-compose -f $(COMPOSE_FILE) down
+	@sudo rm -rf $(DB_VOLUME)
+	@sudo rm -rf $(WP_VOLUME)
+	@sudo docker image rm -f srcs_nginx
+	@sudo docker image rm -f srcs_wordpress
+	@sudo docker image rm -f srcs_mariadb
 
 
 re: fclean run

@@ -3,6 +3,7 @@ version: "2"
 services:
   mariadb:
     build: ./requirements/mariadb
+    image: mariadb
     env_file:
       - .env
     volumes:
@@ -12,6 +13,7 @@ services:
     restart: always
   nginx:
     build: ./requirements/nginx
+    image: nginx
     env_file:
       - .env
     ports:
@@ -25,6 +27,7 @@ services:
     restart: always
   wordpress:
     build: ./requirements/wordpress
+    image: wordpress
     env_file:
       - .env
     depends_on: 

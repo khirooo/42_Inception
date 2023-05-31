@@ -6,7 +6,7 @@
 #    By: kfergani <kfergani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 05:51:35 by kfergani          #+#    #+#              #
-#    Updated: 2023/05/31 15:20:34 by kfergani         ###   ########.fr        #
+#    Updated: 2023/05/31 15:29:56 by kfergani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ all: run
 run:
 	@sudo mkdir -p $(DB_VOLUME)
 	@sudo mkdir -p $(WP_VOLUME)
-	@sudo docker-compose -f $(COMPOSE_FILE) up --build 
+	@sudo docker compose -f $(COMPOSE_FILE) up --build 
 
 rm-volume:
 	@sudo rm -rf $(DB_VOLUME)
@@ -30,7 +30,7 @@ prune:
 	@sudo docker system prune -a
 
 fclean:
-	@sudo docker-compose -f $(COMPOSE_FILE) down
+	@sudo docker compose -f $(COMPOSE_FILE) down
 	@sudo rm -rf $(DB_VOLUME)
 	@sudo rm -rf $(WP_VOLUME)
 	@sudo docker image rm -f srcs_nginx

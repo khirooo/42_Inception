@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     volumes:
-      - /Users/kfergani/data/mysql:/var/lib/mysql
+      - /home/kferganidata/mysql:/var/lib/mysql
     networks:
       - docker_network
     restart: always
@@ -21,7 +21,7 @@ services:
     depends_on: 
       - wordpress
     volumes:
-      - /Users/kfergani/data/wordpress:/var/www/html/wordpress
+      - /home/kferganidata/wordpress:/var/www/html/wordpress
     networks:
       - docker_network
     restart: always
@@ -33,7 +33,7 @@ services:
     depends_on: 
       - mariadb
     volumes:
-      - /Users/kfergani/data/wordpress:/var/www/html/wordpress
+      - /home/kferganidata/wordpress:/var/www/html/wordpress
     networks:
       - docker_network
     restart: always
